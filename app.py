@@ -1,28 +1,33 @@
-def hihaLletres(password:str)->bool:
-    #Partim de la base que no posaràs mai un accent en un password ;)
-    for lletra in password:
-        cod = ord(lletra)
-        if cod >= 97 and cod <= 122:
-            return True
-        if cod >= 65 and cod <= 90:
-            return True
-    return False
-
-def hihaNumero(password:str)->bool:
-    for lletra in password:
-        if lletra in '0123456789':
-            return True
-    return False
-
 def validaPassword(password:str)->(bool, str):
-    if (len(password)<8):
+    if (len(password)<10):
         return False, "Password incorrecte, ha de tenir 8 caràcters..."
     
-    if not hihaLletres(password):
-        return False, "No he trobat cap lletra (lletres amb accents no les considero lletres)"
+    nLletresMaj=0
+    nLletresMin=0
+    nDigitsNumerics=0
+    nSymbols=0
+    pos =0
+    for lletra in password:
+        cod = ord(lletra)
+        if lletra in '0123456789':
+            nDigitsNumerics+=1
+        elif cod >= 65 and cod <= 90:
+            nLletresMin+=1
+        elif cod >= 97 and cod <= 122:
+            nLletresMaj+=1
+        else:
+            if pos>0 and pos<len(password):
+                nSymbols+=1
+        pos+=1
 
-    if not hihaNumero(password):
-        return False, "No he trobat cap número"
+    if nDigitsNumerics<2:
+        return False, "Ens calen 2 dígits numèrics almenys."
+    
+    if nLletresMaj==0 or nLletresMin==0:
+        return False, "Cal una lletra majúscula i una minúscula"
+
+    if nSymbols==0:
+        return False, "Cal un símbol que no pot estar ni al principi ni al final."
 
     return True, ""
 
