@@ -31,9 +31,11 @@ def validaPassword(password:str)->(bool, str):
 
     return True, ""
 
-passwordCorrecte=False
-while(not passwordCorrecte):
-    passwordCorrecte, msg = validaPassword(input("Entra un password:"))
-    if not passwordCorrecte:
-        print (msg)
+if __name__ == "__main__":
+    passwordCorrecte=False
+    while(not passwordCorrecte):
+        passwordCorrecte, msg = validaPassword(input("Entra un password:"))
+        if not passwordCorrecte:
+            print (msg)
     
+

@@ -3,12 +3,12 @@ pipeline {
     stages {
         stage('Build') { 
             steps { 
-                sh 'python3 -m py_compile app.py ' 
+                sh 'python3 -m py_compile appTest.py ' 
             }
         }
         stage('Test'){
             steps {
-                sh 'python3 app.py'
+                sh 'python3 appTest.py'
             }
         }
     }
