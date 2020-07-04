@@ -1,3 +1,4 @@
+#Test exemple
 from app import validaPassword
 
 passwordCorrecte, msg = validaPassword("patata")
